@@ -1,0 +1,254 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type Branch {
+  id: ID!
+  name: String!
+  adress: String
+  copiesBlackWhite: Int
+  copiesColor: Int
+  printsBlackWhite: Int
+  printsColor: Int
+  cash: Int
+}
+
+type Product {
+  id: ID!
+  name: String!
+  details: String
+  basePrice: Float
+  stock: Int
+  sale: Int
+  id_branch: Int
+  id_control: Int
+}
+
+type Article {
+  id: ID!
+  name: String!
+  details: String
+  category: String
+  stock: Int
+  exists: Boolean
+  scare: Boolean
+  id_branch: Int
+  id_control: Int
+}
+
+type User {
+  id: ID!
+  name: String
+  lastName: String
+  nickname: String!
+  mail: String
+  phone: String
+  password: String!
+  admin: Boolean
+  root: Boolean
+  active: Boolean
+  registrationDate: String
+  id_branch: Int
+}
+
+type Control_user {
+  id: ID!
+
+  checkInDate: String!
+  checkOutDate: String!
+  checkInTime: String!
+  checkOutTime: String!
+
+  copiesBlackWhite: Int
+  copiesColor: Int
+  printsBlackWhite: Int
+  printsColor: Int
+
+  initialCash: Float
+
+  pennies50: Int
+  coins1: Int
+  coins2: Int
+  coins5: Int
+  coins10: Int
+  coins20: Int
+
+  bills20: Int
+  bills50: Int
+  bills100: Int
+  bills200: Int
+  bills500: Int
+  bills1000: Int
+
+  id_responsibleUser: Int
+  id_receiveUser: Int
+}
+
+type Observations {
+  id: ID!
+  details: String
+  income: Float
+  expenses: Float
+}
+
+
+
+
+
+
+
+
+
+input NewBranch {
+  id: ID!
+  name: String!
+  adress: String
+  copiesBlackWhite: Int
+  copiesColor: Int
+  printsBlackWhite: Int
+  printsColor: Int
+  cash: Int
+}
+
+input BranchById {
+  id: ID!
+}
+
+input NewProduct {
+  id: ID!
+  name: String!
+  details: String
+  basePrice: Float
+  stock: Int
+  sale: Int
+  id_branch: Int
+  id_control: Int
+}
+input ProductById {
+  id: ID!
+}
+
+input NewArticle {
+  id: ID!
+  name: String!
+  details: String
+  category: String
+  stock: Int
+  exists: Boolean
+  scare: Boolean
+  id_branch: Int
+  id_control: Int
+}
+
+input ArticleById {
+  id: ID!
+}
+
+input NewUser {
+  id: ID!
+  name: String
+  lastName: String
+  nickname: String!
+  mail: String
+  phone: String
+  password: String!
+  admin: Boolean
+  root: Boolean
+  registrationDate: String
+  id_branch: Int
+}
+
+input UserById {
+  id: ID!
+}
+
+input NewControl_user {
+  id: ID!
+
+  checkInDate: String!
+  checkOutDate: String!
+  checkInTime: String!
+  checkOutTime: String!
+
+  copiesBlackWhite: Int
+  copiesColor: Int
+  printsBlackWhite: Int
+  printsColor: Int
+
+  initialCash: Float
+
+  pennies50: Int
+  coins1: Int
+  coins2: Int
+  coins5: Int
+  coins10: Int
+  coins20: Int
+
+  bills20: Int
+  bills50: Int
+  bills100: Int
+  bills200: Int
+  bills500: Int
+  bills1000: Int
+
+  id_responsibleUser: Int
+  id_receiveUser: Int
+}
+
+input Control_userById {
+  id: ID!
+}
+
+input NewObservations {
+  id: ID!
+  details: String
+  income: Float
+  expenses: Float
+}
+
+input ObservationsById {
+  id: ID!
+}
+
+
+
+
+
+
+
+
+
+
+type Query {
+  branches(id: ID): [Branch]
+  products(id: ID, id_branch: Int, id_control: Int): [Product]
+  articles(id: ID, id_branch: Int, id_control: Int): [Article]
+
+  users(id: ID, id_branch: Int): [User]
+  validateUser(userData: String, password: String): User
+}
+
+
+
+
+type Mutation {
+  addBranch(input: NewBranch): Branch
+  deleteBranchById(input: BranchById): Branch
+  updateBranch(input: NewBranch): Branch
+
+  addProduct(input: NewProduct): Product
+  addProductToBranch(input: NewProduct): Product
+  addProductToControl(input: NewProduct): Product
+  deleteProductById(input: ProductById): Product
+  updateProduct(input: NewProduct): Product
+
+  addArticle(input: NewArticle): Article
+  addArticleToBranch(input: NewArticle): Article
+  addArticleToControl(input: NewArticle): Article
+  deleteArticleById(input: ArticleById): Article
+  updateArticle(input: NewArticle): Article
+
+  addUser(input: NewUser): User
+  deleteUserById(input: UserById): User
+  updateUser(input: NewUser): User
+}
