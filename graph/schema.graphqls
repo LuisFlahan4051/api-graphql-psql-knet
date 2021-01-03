@@ -15,6 +15,7 @@ type Branch {
 
 type Product {
   id: ID!
+  code: String!
   name: String!
   details: String
   basePrice: Float

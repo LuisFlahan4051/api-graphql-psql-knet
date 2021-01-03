@@ -9,7 +9,8 @@ import (
 )
 
 const (
-	host     = "localhost"
+	host = "localhost"
+	//host     = "192.168.0.12" fedora server.
 	port     = 5432
 	user     = "luisflahan"
 	password = "4051"

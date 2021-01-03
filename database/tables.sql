@@ -12,6 +12,7 @@ CREATE TABLE branches(
 
 CREATE TABLE products(
     id_product SERIAL,
+    code_product VARCHAR(50) NOT NULL,
     name_product VARCHAR(50) NOT NULL,
     details_product TEXT,
     basePrice_product REAL DEFAULT 0 CHECK (basePrice_product >= 0),
